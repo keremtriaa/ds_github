@@ -39,6 +39,24 @@ def ajouter_tache():
     compteur_id += 1
     print(f"Succès : Tâche '{titre}' ajoutée (ID : {tache['id']}).")
 
+def rechercher_tache():
+    print("\n--- RECHERCHE DE TÂCHE ---")
+    if not taches:
+        print("La liste des tâches est vide.")
+    else:
+        mot_cle = input("Entrez le mot-clé à rechercher : ").strip().lower()
+        
+        resultats = []
+        for t in taches:
+            if mot_cle in t['titre'].lower() or mot_cle in t['description'].lower():
+                resultats.append(t)
+
+        if resultats:
+            print(f"\nRésultats pour '{mot_cle}' :")
+            for t in resultats:
+                print(f"ID : {t['id']} | Titre : {t['titre']} | Statut : {t['statut']} | Priorité : {t['priorite']}")
+        else:
+            print("Aucune tâche ne correspond à la recherche.")
 
 def afficher_taches():
     print("\n--- LISTE DES TÂCHES ---")
